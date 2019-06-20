@@ -1,0 +1,18 @@
+Options -Indexes
+RewriteEngine on
+
+# Change '/mvc/' if directory is renamed
+RewriteBase /mvc/
+
+RewriteCond %{REQUEST_URI} ^/mvc/admin(.+)$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule ^(.+)$ admin.php?route=$1 [QSA,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule ^(.+)$ index.php?route=$1 [QSA,L]
